@@ -1,1 +1,3 @@
 # pathways2022ArgosDemo
+
+Quick demonstration script put together for a student's careers fair. It uses selenium to periodically search for various items (playstation 5, xbox series x etc.) on argos and notifies you when they're available. The code in `main.py` is explicitly simple for a reason and the complexity along with deliberately hacky tech debt is shoved into `extractArgos.py` to get the job done quickly
