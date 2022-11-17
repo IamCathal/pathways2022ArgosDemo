@@ -1,4 +1,5 @@
 from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.common.by import By
 from datetime import datetime
 from termcolor import colored
 from colorama import init
@@ -61,8 +62,12 @@ def printIntro():
     print("===============================================================================")
 
 def acceptCookieBannerArgos(driver):
+    driver.execute_script('document.body.style.MozTransform = "scale(1.2)";')
+    driver.execute_script('document.body.style.MozTransformOrigin = "0 0";')
+
     print(f"{colored(f'{getCurrTime()} [Argos]', 'white')} Accepting cookie banner")
     time.sleep(2)
+    
     try:
         cookieBanner = driver.find_element("id", "onetrust-accept-btn-handler")
         cookieBanner.click()
@@ -70,6 +75,8 @@ def acceptCookieBannerArgos(driver):
         print(f"CRASHED: {e}")
         driver.close()
         quit()
+    driver.execute_script('document.body.style.MozTransform = "scale(1.2)";')
+    driver.execute_script('document.body.style.MozTransformOrigin = "0 0";')
     time.sleep(3)
 
 def searchForProduct(word, driver):
@@ -116,4 +123,3 @@ def getTotalPrice(items):
         extraMessage += ". Looks like its going to be a rough Christmas!"
     print(f"All {totalItemsAvailable} in-stock items cost €{totalPrice}{extraMessage}")
     print("===============================================================================")
-
