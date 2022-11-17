@@ -2,14 +2,22 @@ from extractArgos import *
 from selenium import webdriver
 
 def searchArgos():
-    xboxesFromArgos = getConsoleFromArgos("xbox series x console")
-    playStationsFromArgos = getConsoleFromArgos("playstation 5 console")
+    printIntro()
+    xboxesFromArgos = getItemFromArgos("xbox series x console")
+    playStationsFromArgos = getItemFromArgos("playstation 5 console")
+    football = getItemFromArgos("size 5 fifa football")
+    tableTennisTable = getItemFromArgos("9ft Indoor Table Tennis Table")
+    getTotalPrice([xboxesFromArgos, playStationsFromArgos, football, tableTennisTable])
 
-def getConsoleFromArgos(console):
-    webpage = webdriver.Chrome()
+def getItemFromArgos(console):
+    webpage = webdriver.Firefox()
     webpage.get("https://www.argos.ie")
     acceptCookieBannerArgos(webpage)
     searchForProduct(console, webpage)
-    return(extractConsolesFromPage(console, webpage.page_source))
+    print(webpage.title)
+    consoles = extractItemsFromPage(console, webpage.page_source)
+    webpage.close()
+    return consoles
+
 
 searchArgos()
