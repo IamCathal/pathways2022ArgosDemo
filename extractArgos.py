@@ -38,6 +38,7 @@ def extractIndividualItem(itemName, soup):
 
 def extractItemsFromPage(console, pageSource):
     init()
+    driver.execute_script("document.body.style.zoom='150%'")
     soup = BeautifulSoup(pageSource, 'html.parser')
     results = extractIndividualItem(console, soup)
     print(f"{colored(f'{getCurrTime()} [Argos: {console.upper()}]', getColor(console))} Found {str(len(results))} {console}")
@@ -62,11 +63,7 @@ def printIntro():
     print("===============================================================================")
 
 def acceptCookieBannerArgos(driver):
-    win = driver.find_element(By.TAG_NAME,"html")
-    #for zoom out this will change to 90% if you need more copy and paste it again. Or you can change - to + for zoom in.    
-    win.send_keys(Keys.CONTROL + "+")
-    win.send_keys(Keys.CONTROL + "+")
-    win.send_keys(Keys.CONTROL + "+")
+    driver.execute_script("document.body.style.zoom='150%'")
         
     print(f"{colored(f'{getCurrTime()} [Argos]', 'white')} Accepting cookie banner")
     time.sleep(2)

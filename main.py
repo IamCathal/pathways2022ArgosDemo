@@ -14,7 +14,6 @@ def getItemFromArgos(console):
     webpage.get("https://www.argos.ie")
     acceptCookieBannerArgos(webpage)
     searchForProduct(console, webpage)
-    print(webpage.title)
     consoles = extractItemsFromPage(console, webpage.page_source)
     webpage.close()
     return consoles
