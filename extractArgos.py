@@ -62,9 +62,12 @@ def printIntro():
     print("===============================================================================")
 
 def acceptCookieBannerArgos(driver):
-    driver.execute_script('document.body.style.MozTransform = "scale(1.2)";')
-    driver.execute_script('document.body.style.MozTransformOrigin = "0 0";')
-
+    win = driver.find_element(By.TAG_NAME,"html")
+    #for zoom out this will change to 90% if you need more copy and paste it again. Or you can change - to + for zoom in.    
+    win.send_keys(Keys.CONTROL + "+")
+    win.send_keys(Keys.CONTROL + "+")
+    win.send_keys(Keys.CONTROL + "+")
+        
     print(f"{colored(f'{getCurrTime()} [Argos]', 'white')} Accepting cookie banner")
     time.sleep(2)
     
@@ -75,8 +78,6 @@ def acceptCookieBannerArgos(driver):
         print(f"CRASHED: {e}")
         driver.close()
         quit()
-    driver.execute_script('document.body.style.MozTransform = "scale(1.2)";')
-    driver.execute_script('document.body.style.MozTransformOrigin = "0 0";')
     time.sleep(3)
 
 def searchForProduct(word, driver):
